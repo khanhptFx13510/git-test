@@ -2,9 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 
 import React, { Component } from 'react';
-import { Alert } from 'bootstrap-4-react';
 
 import { Navbar, NavbarBrand } from 'reactstrap';
+import Menu from './components/MenuComponent.js';
 
 class App extends Component {
   render() {
@@ -15,6 +15,7 @@ class App extends Component {
             <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
           </div>
         </Navbar>
+        <Menu />
       </div>
     )
   }
@@ -22,4 +23,3 @@ class App extends Component {
 
 export default App;
 
-// return <Alert primary>Primary Alert</Alert>
