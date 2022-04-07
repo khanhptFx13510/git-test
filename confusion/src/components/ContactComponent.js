@@ -74,6 +74,7 @@ class Contact extends Component {
       
       return errors;
    }
+   
    render(){
       const errors = this.validate(this.state.firstName, this.state.lastName ,this.state.telNum, this.state.email)
       return(
