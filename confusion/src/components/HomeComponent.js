@@ -25,10 +25,10 @@ function RenderCard({item, isLoading, errMess}){
                </CardTitle>
             </CardBody>
          </Card>
-                  
       );
    }
 }
+                  
 
 
 function Home(props) {
