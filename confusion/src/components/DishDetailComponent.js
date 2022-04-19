@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card , CardBody , CardText , CardTitle,  CardImg , Breadcrumb , BreadcrumbItem , Button, Modal ,ModalHeader , ModalBody , Form, FormGroup, Input ,Label , FormFeedback} from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import { Loading } from './LoadingComponent';
 
    function RenderDish({dish}) {
       
@@ -164,7 +164,26 @@ import { Link } from 'react-router-dom';
    }
 
    const DishDetail = (props) =>{
-      if(props.dish != undefined){
+      if(props.isLoading){
+         return(
+            <div className="container">
+               <div className="row">
+                  <Loading />
+               </div>
+            </div>
+         )
+      }
+      else if(props.errMess){
+         return(
+            <div className="container">
+               <div className="row">
+                  <h4>{props.errMess}</h4>
+               </div>
+            </div>
+         )
+      }
+
+      if(props.dish != null ){
 
          return (
             <div className="container">
@@ -190,8 +209,10 @@ import { Link } from 'react-router-dom';
 
                
          )
+      } else{
+         return <div></div>  
+
       }
-      return null;  
    }
 
    export default DishDetail;
