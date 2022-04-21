@@ -3,6 +3,7 @@ import Home from './HomeComponent.js';
 import Menu from './MenuComponent.js';
 import Contact from './ContactComponent';
 import DishDetail from './DishDetailComponent.js';
+import About from './AboutComponent';
 import Header from './HeaderComponent.js';
 import Footer from './FooterComponent.js';
 import { Switch, Route, Redirect , withRouter } from 'react-router-dom';
@@ -46,6 +47,12 @@ class Main extends Component {
              />
          );
       }
+
+      const AboutUs = () => {
+         return(
+            <About leaders={this.props.leaders} />
+         )
+     }
       const DishWithId = ({match}) => {
          return(
             <DishDetail 
@@ -62,6 +69,7 @@ class Main extends Component {
             <Header />
             <Switch>
                <Route path='/home' component={HomePage} />
+               <Route path="/aboutus" component={AboutUs} />
                <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
                <Route path='/menu/:dishId' component={DishWithId} />
                <Route exact path='/contactus' component={()=><Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
