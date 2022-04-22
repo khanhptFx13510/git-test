@@ -22,7 +22,7 @@ import { baseUrl } from '../shared/baseUrl';
       );
    }
       
-   function RenderComments({comments, addComment ,dishId}){
+   function RenderComments({comments, postComment ,dishId}){
       if(comments != null){
          return(
             <div className="col-12 col-md-5 m-1">
@@ -40,7 +40,7 @@ import { baseUrl } from '../shared/baseUrl';
                   })}
                </ul>
 
-               <CommentForm dishId={dishId} addComment={addComment} />        
+               <CommentForm dishId={dishId} postComment={postComment} />        
             </div>
          )
 
@@ -76,8 +76,8 @@ import { baseUrl } from '../shared/baseUrl';
    
       handleSubmitComment(values){
          this.toggleModal();
-         console.log(this.rating.value);
-         this.props.addComment(this.props.dishId , this.rating.value , this.author.value, this.comment.value);
+         this.props.postComment(this.props.dishId , this.rating.value , this.author.value, this.comment.value);
+         values.preventDefault()
       }
    
       toggleBlur() {
@@ -203,7 +203,7 @@ import { baseUrl } from '../shared/baseUrl';
                <div className="row">
                   <RenderDish dish={props.dish} />
                   <RenderComments comments = {props.comments}
-                     addComment={props.addComment}
+                     postComment={props.postComment}
                      dishId={props.dish.id} />
                </div>
             </div>
