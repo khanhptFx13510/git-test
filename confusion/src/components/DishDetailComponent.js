@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card , CardBody , CardText , CardTitle,  CardImg , Breadcrumb , BreadcrumbItem , Button, Modal ,ModalHeader , ModalBody , Form, FormGroup, Input ,Label , FormFeedback} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
    function RenderDish({dish}) {
       
@@ -10,7 +11,7 @@ import { Loading } from './LoadingComponent';
 
             <Card key={dish.id} style={{padding: "0px"}}>
 
-               <CardImg src={dish.image} alt={dish.name} />
+            <CardImg top src={baseUrl + dish.image} alt={dish.name} />
 
                <CardBody>
                   <CardTitle>{dish.name}</CardTitle>
