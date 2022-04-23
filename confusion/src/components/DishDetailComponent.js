@@ -3,21 +3,26 @@ import { Card , CardBody , CardText , CardTitle,  CardImg , Breadcrumb , Breadcr
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
    function RenderDish({dish}) {
       
       return (
          <div className="col-12 col-md-5 m-1">
+            <FadeTransform in
+            transformProps={{
+               exitTransform: 'scale(0.5) translateY(-50%)'
+            }}>
+               <Card key={dish.id} style={{padding: "0px"}}>
 
-            <Card key={dish.id} style={{padding: "0px"}}>
+               <CardImg top src={baseUrl + dish.image} alt={dish.name} />
 
-            <CardImg top src={baseUrl + dish.image} alt={dish.name} />
-
-               <CardBody>
-                  <CardTitle>{dish.name}</CardTitle>
-                  <CardText>{dish.description}</CardText>
-               </CardBody>
-            </Card>
+                  <CardBody>
+                     <CardTitle>{dish.name}</CardTitle>
+                     <CardText>{dish.description}</CardText>
+                  </CardBody>
+               </Card>
+            </FadeTransform>
          </div>
       );
    }
@@ -28,16 +33,21 @@ import { baseUrl } from '../shared/baseUrl';
             <div className="col-12 col-md-5 m-1">
                <h3>Comments</h3>
                <ul className="list-unstyled">
-                  {comments.map(comment => {
-                     return (
-                        <CardBody key={comment.id}>
-                           <CardText>{comment.comment}</CardText>
-                           <CardText>-- {comment.author},  
-                              {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
-                           </CardText>
-                        </CardBody>
-                     )
-                  })}
+                  <Stagger in>
+                     {comments.map(comment => {
+                        return (
+                           <Fade in>
+                              <CardBody key={comment.id}>
+                                 <CardText>{comment.comment}</CardText>
+                                 <CardText>-- {comment.author},  
+                                    {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                                 </CardText>
+                              </CardBody>
+                           </Fade>
+                        )
+                     })}
+                  </Stagger>
+                  
                </ul>
 
                <CommentForm dishId={dishId} postComment={postComment} />        
